@@ -6,6 +6,7 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 const IndexRoutes = require("./routes/index.routes");
+const JwtRoutes = require("./routes/jwt.routes");
 const EmailRoutes = require("./routes/email.routes");
 const ErrorHandlerMiddleware = require("./middlewares/error").errorHandler;
 
@@ -19,6 +20,7 @@ app.options("*", cors());
 
 //Routes
 app.use(IndexRoutes);
+app.use(JwtRoutes);
 app.use(EmailRoutes);
 app.use(ErrorHandlerMiddleware);
 

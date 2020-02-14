@@ -4,21 +4,19 @@ const EmailService = require("../services/email");
 
 exports.SendEmail = async (req, res) => {
   console.log("Called Send Email");
-  var result = EmailService.sendEmail(req.body);
+  var result = await EmailService.sendEmail(req.body);
+  console.log(result);
+
   //TODO returned result gonna be fixed
-  res.status(200).json({
-    message: "--",
-    data: result
-  });
-  // if (result) {
-  //   res.status(500).json({
-  //     message: "error",
-  //     data: "hata"
-  //   });
-  // } else {
-  //   res.status(200).json({
-  //     message: "success",
-  //     data: data
-  //   });
-  // }
+  if (result === "Ok") {
+    res.status(200).json({
+      message: "Success",
+      data: result
+    });
+  } else {
+    res.status(500).json({
+      message: "Error",
+      data: result
+    });
+  }
 };
