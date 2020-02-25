@@ -3,10 +3,7 @@ const EmailService = require("../services/email");
 //for production: Sendgrid, MailGun
 
 exports.SendEmail = async (req, res) => {
-  console.log("Called Send Email");
   var result = await EmailService.sendEmail(req.body);
-  console.log(result);
-
   //TODO returned result gonna be fixed
   if (result === "Ok") {
     res.status(200).json({
